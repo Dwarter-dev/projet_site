@@ -29,6 +29,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Commande::class)]
     private $commandes;
 
+    #[ORM\ManyToOne(targetEntity: Adresse::class, inversedBy: 'users')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $adresse;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
@@ -130,6 +134,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $commande->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAdresse(): ?Adresse
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(?Adresse $adresse): self
+    {
+        $this->adresse = $adresse;
 
         return $this;
     }

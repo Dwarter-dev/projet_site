@@ -36,9 +36,13 @@ class Adresse
     #[ORM\OneToMany(mappedBy: 'adresse', targetEntity: Commande::class)]
     private $commandes;
 
+    #[ORM\OneToMany(mappedBy: 'adresse', targetEntity: User::class)]
+    private $users;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -142,6 +146,36 @@ class Adresse
             // set the owning side to null (unless already changed)
             if ($commande->getAdresse() === $this) {
                 $commande->setAdresse(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->setAdresse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getAdresse() === $this) {
+                $user->setAdresse(null);
             }
         }
 
