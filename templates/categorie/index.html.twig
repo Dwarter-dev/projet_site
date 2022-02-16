@@ -1,0 +1,32 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Catégorie!{% endblock %}
+
+{% block body %}
+<h1 class="pb-5">Liste des catégories</h1>
+
+<table class="table text-center table-hover table-sm">
+    <thead>
+        <tr>
+            <th>N°</th>
+            <th>Nom</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for categories in categorie %}
+            <tr>
+              <td class="align-middle">{{ loop.index }}</td>
+              <td class="align-middle">{{ categories.nomCategorie }}</td>
+              <td class="align-middle">
+                  <a href="{{ path( 'genre_update', {'id': genre.id} ) }}" class="text-primary"><i class="fas fa-pen-square"></i></a>
+                  <a href="{{ path( 'genre_delete', {'id': genre.id} ) }}" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+              </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="d-flex justify-content-end my-5">
+    <a href="{{ path('categorie_create') }}" class="btn btn-success">Ajouter une Catégorie</a>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+  {{ form_start(langueForm) }}
+
+  <div class="row justify-content-center">
+    <div class="col-6">
+      {{ form_row(langueForm.nomLangue, {'label': 'Langue'}) }}
+    </div>
+  </div>
+
+  <div class="col-12 d-flex justify-content-center">
+    <a href="{{ path('langue_index') }}" class="btn btn-danger m-3">Annuler</a>
+    <button class="btn btn-success m-3">Créer</button>
+  </div>
+
+  {{ form_end(langueForm) }}
+
+{% endblock %}

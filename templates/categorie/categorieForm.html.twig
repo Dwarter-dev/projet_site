@@ -1,0 +1,22 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+  {{ form_start(categorieForm) }}
+
+  <div class="row justify-content-center">
+    <div class="col-6">
+      {{ form_row(categorieForm.nomCategorie, {'label': 'Nom de la catégorie'}) }}
+    </div>
+  </div>
+
+  <div class="col-12 d-flex justify-content-center">
+    <a href="{{ path('categorie_index') }}" class="btn btn-danger m-3">Annuler</a>
+    <button class="btn btn-success m-3">Créer</button>
+  </div>
+
+  {{ form_end(categorieForm) }}
+
+{% endblock %}
