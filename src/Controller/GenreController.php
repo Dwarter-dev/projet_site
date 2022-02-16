@@ -44,4 +44,42 @@ class GenreController extends AbstractController
           'genreForm' => $form->createView()
       ]);
   }
+  //Partie Update
+   #[Route('/admin/genre/update/{id}', name: 'genre_update')]
+   public function update(GenreProduitRepository $genreRepository, int $id, Request $request, ManagerRegistry $managerRegistry)
+   {
+     $genre = $genreRepository->find($id); // Récupérer l'id et du coup la genre
+     $form = $this->createForm(GenreType::class, $genre); // Générer le formulaire en récupérant les données de la genre avec $genre
+     $form->handleRequest($request); // gestionnaire de requêtes HTTP
+
+     // Traitement si le formulaire est envoyé - Attention, avec le mapped, l'image ne se récupère pas
+     if ($form->isSubmitted() && $form->isValid()) {
+       // Affichage de la form
+       $manager = $managerRegistry->getManager();
+       $manager->persist($genre);
+       $manager->flush();
+
+       $this->addFlash('success', 'Le genre a bien été modifier');
+       return $this->redirectToRoute('admin_genre_index');
+     }
+
+     return $this->render('genre/genreUpdateForm.html.twig', [
+       'genreForm' => $form->createView()
+     ]);
+   }
+   // Partie Suppression
+   #[Route('/admin/genre/delete/{id}', name: 'genre_delete')]
+   public function delete(GenreProduitRepository $genreRepository, int $id, ManagerRegistry $managerRegistry)
+   {
+     // Récupérer la genre à partir de l'id
+     $genre = $genreRepository->find($id); // récupère la genre graçe à son id
+     // Récupération et suppression des valeurs
+     $manager = $managerRegistry->getManager();
+     $manager->remove($genre);
+     $manager->flush();
+     // Message de succès
+     $this->addFlash('success', 'Le genre a bien été supprimé');
+     // Redirection
+     return $this->redirectToRoute('admin_genre_index');
+   }
 }

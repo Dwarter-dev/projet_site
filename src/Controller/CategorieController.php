@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CategorieController extends AbstractController
 {
-  #[Route('/categorie', name: 'admin_categorie_index')]
+  #[Route('/admin/categorie', name: 'admin_categorie_index')]
   public function index(CategorieProduitRepository $categorieRepository): Response
   {
     $categories = $categorieRepository->findAll();
@@ -24,7 +24,7 @@ class CategorieController extends AbstractController
     ]);
   }
   // Partie Création
-  #[Route('/categorie/create', name: 'categorie_create')]
+  #[Route('/admin/categorie/create', name: 'categorie_create')]
   public function create(Request $request, ManagerRegistry $managerRegistry)
   {
       $categorie = new CategorieProduit();
@@ -44,4 +44,42 @@ class CategorieController extends AbstractController
           'categorieForm' => $form->createView()
       ]);
   }
+  //Partie Update
+   #[Route('/admin/categorie/update/{id}', name: 'categorie_update')]
+   public function update(CategorieProduitRepository $categorieRepository, int $id, Request $request, ManagerRegistry $managerRegistry)
+   {
+     $categorie = $categorieRepository->find($id); // Récupérer l'id et du coup la categorie
+     $form = $this->createForm(CategorieType::class, $categorie); // Générer le formulaire en récupérant les données de la categorie avec $categorie
+     $form->handleRequest($request); // gestionnaire de requêtes HTTP
+
+     // Traitement si le formulaire est envoyé - Attention, avec le mapped, l'image ne se récupère pas
+     if ($form->isSubmitted() && $form->isValid()) {
+       // Affichage de la form
+       $manager = $managerRegistry->getManager();
+       $manager->persist($categorie);
+       $manager->flush();
+
+       $this->addFlash('success', 'La région a bien été modifier');
+       return $this->redirectToRoute('admin_categorie_index');
+     }
+
+     return $this->render('categorie/categorieUpdateForm.html.twig', [
+       'categorieForm' => $form->createView()
+     ]);
+   }
+   // Partie Suppression
+   #[Route('/admin/categorie/delete/{id}', name: 'categorie_delete')]
+   public function delete(CategorieProduitRepository $categorieRepository, int $id, ManagerRegistry $managerRegistry)
+   {
+     // Récupérer la categorie à partir de l'id
+     $categorie = $categorieRepository->find($id); // récupère la categorie graçe à son id
+     // Récupération et suppression des valeurs
+     $manager = $managerRegistry->getManager();
+     $manager->remove($categorie);
+     $manager->flush();
+     // Message de succès
+     $this->addFlash('success', 'La categorie a bien été supprimé');
+     // Redirection
+     return $this->redirectToRoute('admin_categorie_index');
+   }
 }

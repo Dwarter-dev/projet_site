@@ -18,10 +18,9 @@
               <td class="align-middle">{{ loop.index }}</td>
               <td class="align-middle">{{ regions.nomRegion }}</td>
               <td class="align-middle">
-                  <a href="{{ path( 'region_update', {'id': region.id} ) }}" class="text-primary"><i class="fas fa-pen-square"></i></a>
-                  <a href="{{ path( 'region_delete', {'id': region.id} ) }}" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                  <a href="{{ path('region_update', {'id': regions.id} ) }}" class="text-primary"><i class="fas fa-pen-square"></i></a>
+                  <a href="{{ path('region_delete', {'id': regions.id} ) }}" class="text-danger"><i class="fas fa-trash-alt"></i></a>
               </td>
-
             </tr>
         {% endfor %}
     </tbody>

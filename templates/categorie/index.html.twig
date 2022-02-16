@@ -17,7 +17,10 @@
             <tr>
               <td class="align-middle">{{ loop.index }}</td>
               <td class="align-middle">{{ categories.nomCategorie }}</td>
-
+              <td class="align-middle">
+                  <a href="{{ path( 'categorie_update', {'id': categories.id} ) }}" class="text-primary"><i class="fas fa-pen-square"></i></a>
+                  <a href="{{ path( 'categorie_delete', {'id': categories.id} ) }}" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+              </td>
             </tr>
         {% endfor %}
     </tbody>

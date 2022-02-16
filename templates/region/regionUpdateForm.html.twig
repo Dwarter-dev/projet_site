@@ -4,19 +4,19 @@
 
 {% block body %}
 
-  {{ form_start(categorieForm) }}
+  {{ form_start(regionForm) }}
 
   <div class="row justify-content-center">
     <div class="col-6">
-      {{ form_row(categorieForm.nomCategorie, {'label': 'Nom de la catégorie'}) }}
+      {{ form_row(regionForm.nomRegion, {'label': 'Nom de la région (Continant + Accronime)'}) }}
     </div>
   </div>
 
   <div class="col-12 d-flex justify-content-center">
-    <a href="{{ path('admin_categorie_index') }}" class="btn btn-danger m-3">Annuler</a>
+    <a href="{{ path('admin_region_index') }}" class="btn btn-danger m-3">Annuler</a>
     <button class="btn btn-success m-3">Modifier</button>
   </div>
 
-  {{ form_end(categorieForm) }}
+  {{ form_end(regionForm) }}
 
 {% endblock %}
