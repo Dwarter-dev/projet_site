@@ -47,4 +47,17 @@ class ProduitRepository extends ServiceEntityRepository
         ;
     }
     */
+    /**
+    * @return Produit[] Returns an array of 1 Produit objects ordered by latest insted id
+    */
+  // public function findLastThree()
+  // {
+  //   return $this->createQueryBuilder('fls') // fls est un alias
+  //   // ->andWhere('fls.surface->:val') // on cherche un id supérieur à une certaine valeur
+  //   // ->setParameter('val',0) // on défini la valeur
+  //   ->orderBy('fls.id', 'DESC') // tri en ordre décroissant
+  //   ->setMaxResults(1) // sélectionne 6 résultats maximum
+  //   ->getQuery() // requête
+  //   ->getResult(); // résultats(s)
+  // }
 }
