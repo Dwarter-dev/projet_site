@@ -1,0 +1,29 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Genre{% endblock %}
+
+{% block body %}
+<h1 class="pb-5">Liste des genres</h1>
+
+<table class="table text-center table-hover table-sm">
+    <thead>
+        <tr>
+            <th>N°</th>
+            <th>Nom</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for genres in genre %}
+            <tr>
+              <td class="align-middle">{{ loop.index }}</td>
+              <td class="align-middle">{{ genres.nomGenre }}</td>
+
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="d-flex justify-content-end my-5">
+    <a href="{{ path('genre_create') }}" class="btn btn-success">Ajouter un Genre</a>
+</div>
+{% endblock %}

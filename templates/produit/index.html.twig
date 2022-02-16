@@ -1,0 +1,33 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Produits!{% endblock %}
+
+{% block body %}
+<h1 class="pb-5">Liste des produits</h1>
+
+<table class="table text-center table-hover table-sm">
+    <thead>
+        <tr>
+            <th>N°</th>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Manette(s)</th>
+            <th>Branchements</th>
+            <th>Boite</th>
+            <th>Notice</th>
+            <th>Prix</th>
+            <th>Région</th>
+            <th>État</th>
+            <th>Catégorie</th>
+        </tr>
+    </thead>
+    <tbody>
+      <!-- findAll() -->
+    </tbody>
+</table>
+
+<div class="d-flex justify-content-end my-5">
+    <a href="{{ path('produit_create') }}" class="btn btn-success">Ajouter un Produit</a>
+</div>
+{% endblock %}
