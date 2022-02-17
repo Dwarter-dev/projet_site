@@ -33,6 +33,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\JoinColumn(nullable: false)]
     private $adresse;
 
+    #[ORM\Column(type: 'string', length: 50)]
+    private $nom;
+
+    #[ORM\Column(type: 'string', length: 50)]
+    private $prenom;
+
+    #[ORM\Column(type: 'integer')]
+    private $num_tel;
+
+    #[ORM\Column(type: 'string', length: 100)]
+    private $pseudo;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $image_user;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
@@ -146,6 +161,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAdresse(?Adresse $adresse): self
     {
         $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getNumTel(): ?int
+    {
+        return $this->num_tel;
+    }
+
+    public function setNumTel(int $num_tel): self
+    {
+        $this->num_tel = $num_tel;
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    public function getImageUser(): ?string
+    {
+        return $this->image_user;
+    }
+
+    public function setImageUser(string $image_user): self
+    {
+        $this->image_user = $image_user;
 
         return $this;
     }
