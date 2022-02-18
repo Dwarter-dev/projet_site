@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Form;
-
 // Entités/Classes
 use App\Entity\Produit;
 use App\Entity\GenreProduit;
@@ -120,24 +119,25 @@ class ProduitType extends AbstractType
             //Importation des différentes Classes/Entités lié à la table Produit [à trouver]
             // ->add('genreProduit', EntityType::class, [
             //     'class' => GenreProduit::class,
-            //     'choice_label' => 'Genre du produit'
+            //     'choice_label' => 'nom_genre'
             // ])
             // ->add('langueProduit', EntityType::class, [
             //     'class' => LangueProduit::class,
-            //     'choice_label' => 'Langue du produit'
+            //     'choice_label' => 'nom_langue'
             // ])
-            // ->add('regionProduit', EntityType::class, [
-            //     'class' => RegionProduit::class,
-            //     'choice_label' => 'Region du produit'
-            // ])
-            // ->add('etatProduit', EntityType::class, [
-            //     'class' => EtatProduit::class,
-            //     'choice_label' => 'Etat du produit'
-            // ])
-            // ->add('categorieProduit', EntityType::class, [
-            //     'class' => CategorieProduit::class,
-            //     'choice_label' => 'Catégorie du produit'
-            // ])
+            ->add('regionProduit', EntityType::class, [
+                'class' => RegionProduit::class,
+                'choice_label' => 'nom_region'
+            ])
+            ->add('etatProduit', EntityType::class, [
+                'required' => true,
+                'class' => EtatProduit::class,
+                'choice_label' => 'nom_etat'
+            ])
+            ->add('categorieProduit', EntityType::class, [
+                'class' => CategorieProduit::class,
+                'choice_label' => 'nom_categorie'
+            ])
         ;
     }
 
