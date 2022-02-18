@@ -117,6 +117,7 @@ class ProduitType extends AbstractType
                   ]
             ])
             //Importation des différentes Classes/Entités lié à la table Produit [à trouver]
+<<<<<<< HEAD
             ->add('genreProduit', EntityType::class, [
                 'class' => GenreProduit::class,
                 'choice_label' => 'nom_genre',
@@ -129,6 +130,16 @@ class ProduitType extends AbstractType
                 'multiple' => true,
 
             ])
+=======
+            // ->add('genreProduit', EntityType::class, [
+            //     'class' => GenreProduit::class,
+            //     'choice_label' => 'nom_genre'
+            // ])
+            // ->add('langueProduit', EntityType::class, [
+            //     'class' => LangueProduit::class,
+            //     'choice_label' => 'nom_langue'
+            // ])
+>>>>>>> c3398fa05b991d5b918c3fad4554331403817782
             ->add('regionProduit', EntityType::class, [
                 'class' => RegionProduit::class,
                 'choice_label' => 'nom_region'
