@@ -10,22 +10,29 @@
     <div class="col-9">
       {{ form_row(produitForm.nom_produit, {'label': 'Titre'}) }}
     </div>
-    {# <div class="col-3">
+     <div class="col-3">
        {{ form_row(produitForm.categorieProduit, {'label': 'Catégorie du produits'}) }}
-    </div> #}
+    </div>
   </div>
 
   <div class="col-12">
      {{ form_row(produitForm.description_produit, {'label': 'Description'}) }}
   </div>
 
-  {#<div class="row">
-    <h2>Caractéristiques importantes</h2>
-    <div class="col-3">
-       {{ form_row(produitForm.genreProduit, {'label': 'Genre (facultatif pour les consoles)'}) }}
+  <div class="row">
+    <div class="col-12">
+        <h2>Caractéristiques importantes</h2>
     </div>
     <div class="col-3">
-         {{ form_row(produitForm.langueProduit, {'label': 'Langue(s) (facultatif)'}) }}
+       {{ form_row(produitForm.genreProduit, {
+          'label': 'Genre (facultatif pour les consoles)',
+          'label_attr': {
+            'class': 'py-0'}
+          }
+        ) }}
+    </div>
+    <div class="col-3">
+         {{ form_row(produitForm.langueProduit, {'label': 'Langue(s)'}) }}
     </div>
     <div class="col-3">
          {{ form_row(produitForm.regionProduit, {'label': 'Region'}) }}
@@ -33,12 +40,12 @@
     <div class="col-3">
          {{ form_row(produitForm.etatProduit, {'label': 'Etat Général'}) }}
     </div>
-  </div>#}
+  </div>
 
   <div class="row">
     <h2>Détails en plus</h2>
     <div class="col-3">
-       {{ form_row(produitForm.nb_manette_produit, {'label': 'Nombre de manettes incluse(s)'}) }}
+       {{ form_row(produitForm.nb_manette_produit, {'label': 'Nombre de manettes incluse'}) }}
     </div>
     <div class="col-3">
          {{ form_row(produitForm.branchement_produit, {'label': 'Branchements inclus'}) }}
@@ -53,7 +60,7 @@
 
   <div class="row">
     <div class="col-6">
-         {{ form_row(produitForm.prixProduit, {'label': 'Prix'}) }}
+         {{ form_row(produitForm.prixProduit, {'label': 'Prix (€)'}) }}
     </div>
     <div class="col-6">
          {{ form_row(produitForm.imageProduit, {'label': 'Image du produit'}) }}
@@ -61,7 +68,7 @@
   </div>
 
   <div class="col-12 d-flex justify-content-end">
-    <a href="#" class="btn btn-danger m-3">Annuler</a>
+    <a href="{{ path('admin_produit_index') }}" class="btn btn-danger m-3">Annuler</a>
     <button class="btn btn-success m-3">Créer</button>
   </div>
 
