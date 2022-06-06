@@ -57,7 +57,7 @@ class ProduitType extends AbstractType
                     '8' => 8
                 ]
               ])
-            ->add('branchement_produit', ChoiceType::class, [ // booléen
+            ->add('branchement_produit', ChoiceType::class, [ // choix multiples
                 'required' => true,
                 'label' => 'Branchements',
                 'choices' => [
