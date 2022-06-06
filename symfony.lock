@@ -131,6 +131,9 @@
             "./config/packages/sensio_framework_extra.yaml"
         ]
     },
+    "symfony/amqp-messenger": {
+        "version": "v5.4.5"
+    },
     "symfony/apache-pack": {
         "version": "1.0",
         "recipe": {
@@ -360,6 +363,9 @@
     "symfony/proxy-manager-bridge": {
         "version": "v6.0.3"
     },
+    "symfony/redis-messenger": {
+        "version": "v5.4.6"
+    },
     "symfony/routing": {
         "version": "6.0",
         "recipe": {
@@ -393,6 +399,9 @@
     },
     "symfony/security-csrf": {
         "version": "v6.0.3"
+    },
+    "symfony/security-guard": {
+        "version": "v5.4.9"
     },
     "symfony/security-http": {
         "version": "v6.0.3"
