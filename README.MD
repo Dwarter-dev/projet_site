@@ -225,7 +225,7 @@ php bin/console make:registration-form
 composer require symfonycasts/verify-email-bundle
 ```
 - modifier la dernière redirection après la vérification de l'adresse mail (RegistrationController::verifyUserEmail())
-- gérer l'affichage des messages flash (register.html.twig, ...)
+- gérer l'affichage des messages flash (register.html.twig et confirmation_email.html.twig)
 - personnaliser le formulaire, le controller et les templates
 - migration pour gérer la propriété User::isVerified
 
