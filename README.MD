@@ -210,7 +210,12 @@ php bin/console make:entity user
 ```
 - migration (habituelle)
 
-#### 2. Créer le formulaire de création du compte
+### 2.Créer la page de login
+```
+php bin/console make:auth
+```
+
+#### 3. Créer le formulaire de création du compte
 
 ```
 php bin/console make:registration-form

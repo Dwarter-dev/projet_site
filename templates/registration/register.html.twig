@@ -9,38 +9,40 @@
     </header>
 
     <main class="container-fluid">
-
-    <div class="row">
-      <div class="col-8 offset-2">
-        {% for label, messages in app.flashes %}
-          {% for message in messages %}
-          <div class="flash-{{ label }} bg-{{ label }} text-light p-3 mb-5 rounded">
-            {{ message }}
-            <!-- gère les messages flash normaux -->
-          </div>
+      <div class="row">
+        <div class="col-8 offset-2">
+          {% for label, messages in app.flashes %}
+            {% for message in messages %}
+            <div class="flash-{{ label }} bg-{{ label }} text-light p-3 mb-5 rounded">
+              {{ message }}
+              <!-- gère les messages flash normaux -->
+            </div>
+            {% endfor %}
           {% endfor %}
-        {% endfor %}
+        </div>
       </div>
-    </div>
 
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
-
+      {% for flash_error in app.flashes('verify_email_error') %}
+          <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+      {% endfor %}
 
 
-      <h1>Inscription</h1>
+      <div class="row py-5">
+        <div class="col-4 offset-4">
+          <div class="col-4 offset-4">
+                  <h1>Inscription</h1>
+          </div>
+          {{ form_start(registrationForm) }}
+              {{ form_row(registrationForm.email) }}
+              {{ form_row(registrationForm.plainPassword, {
+                  label: 'Password'
+              }) }}
+              {{ form_row(registrationForm.agreeTerms) }}
 
-      {{ form_start(registrationForm) }}
-          {{ form_row(registrationForm.email) }}
-          {{ form_row(registrationForm.plainPassword, {
-              label: 'Password'
-          }) }}
-          {{ form_row(registrationForm.agreeTerms) }}
-
-          <button type="submit" class="btn">Valider</button>
-      {{ form_end(registrationForm) }}
-
+              <button type="submit" class="btn">Valider</button>
+          {{ form_end(registrationForm) }}
+        </div>
+      </div>
   </main>
 
 {% endblock %}
