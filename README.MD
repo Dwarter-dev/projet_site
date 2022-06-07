@@ -199,6 +199,7 @@ twig:
 ### Gestion des Comptes
 
 #### 1. Créer le User
+
 - créer l'entité User (nom + préciser la valeur unique) :
 ```
 php bin/console make:user
@@ -211,7 +212,6 @@ php bin/console make:entity user
 
 #### 2. Créer le formulaire de création du compte
 
-- créer le formulaire d'inscription
 ```
 php bin/console make:registration-form
 ```

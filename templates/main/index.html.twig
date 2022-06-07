@@ -4,4 +4,30 @@
 
 {% block body %}
 
+<main class="container-fluid p-5">
+
+  <div class="row">
+    <div class="col-8 offset-2">
+      {% for label, messages in app.flashes %}
+        {% for message in messages %}
+        <div class="flash-{{ label }} bg-{{ label }} text-light p-3 mb-5 rounded">
+          {{ message }}
+          <!-- gère les messages flash notament ceux de la création du compte -->
+        </div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+</main>
+
+
+
 {% endblock %}
