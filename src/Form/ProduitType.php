@@ -26,7 +26,7 @@ class ProduitType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom_produit', TextType::class, [
+            ->add('nomProduit', TextType::class, [
                 'required' => true,
                 'label' => 'Nom du produit',
                 'attr' => [
@@ -34,7 +34,7 @@ class ProduitType extends AbstractType
                      'placeholder' => 'Super Mario Bros.'
                 ]
               ])
-            ->add('description_produit', TextareaType::class, [
+            ->add('descriptionProduit', TextareaType::class, [
                 'required' => true,
                 'label' => 'Description',
                 'attr' => [
@@ -42,11 +42,11 @@ class ProduitType extends AbstractType
                      'placeholder' => 'Détails en tout genre sur le jeu'
                 ]
               ])
-            ->add('nb_manette_produit', ChoiceType::class, [
+            ->add('nbManetteProduit', ChoiceType::class, [
                 //'required' => true,
                 'label' => 'Nbr de Manettes',
                 'choices' => [
-                    '0' => 0,
+                    'Aucune' => 0,
                     '1' => 1,
                     '2' => 2,
                     '3' => 3,
@@ -57,35 +57,29 @@ class ProduitType extends AbstractType
                     '8' => 8
                 ]
               ])
-            ->add('branchement_produit', ChoiceType::class, [ // choix multiples
-                'required' => true,
+            ->add('branchementProduit', ChoiceType::class, [
                 'label' => 'Branchements',
                 'choices' => [
-                  '-- sélectionner une option --' => null,
-                  'oui' => true,
-                  'non' => false
+                  'Aucun' => false,
+                  'Inclus' => true
                 ]
               ])
-            ->add('boite_produit', ChoiceType::class, [ // booléen
-                'required' => true,
-                'label' => 'Branchements',
+            ->add('boiteProduit', ChoiceType::class, [ // booléen
+                'label' => 'Boîte',
                 'choices' => [
-                  '-- sélectionner une option --' => null,
-                  'oui' => true,
-                  'non' => false
+                  'Aucune' => false,
+                  'Incluse' => true
                 ]
               ])
-            ->add('notice_produit', ChoiceType::class, [
-                'required' => true,
+            ->add('noticeProduit', ChoiceType::class, [
                 'label' => 'Notice',
                 'choices' => [
-                  '-- sélectionner une option --' => null,
-                  'oui' => true,
-                  'non' => false
+                  'Aucune' => false,
+                  'Incluse' => true
                 ]
               ])
             ->add('prixProduit', IntegerType::class, [
-                //'required' => true,
+                'required' => true,
                 'label' => 'Prix (€)',
                 'attr' => [
                     'min' => 0,
@@ -101,11 +95,11 @@ class ProduitType extends AbstractType
                 'mapped' => false,
                 // dissocie ce qu'il y a dans le formulaire de ce qui est présent dans la BDD
                 // empêche d'envoyer l'image et envoie uniquement le nom de l'image pour que la BDD stocke un texte à la place d'une image
-                'constraints' => [ //contraintes d'envoie du fichier
+                'constraints' => [ // contraintes d'envoie du fichier
                     new Image ([
-                        'maxSize' => '1M', // Taille (1Mo)
+                        'maxSize' => '1M', // taille (1Mo)
                         'maxSizeMessage' => 'Le fichier est trop volumineux ({{ size }} Mo). Taille maximum : 1 Mo',
-                        'mimeTypes' => [ // type
+                        'mimeTypes' => [ // type d'image tolérer
                           'image/png',
                           'image/jpg',
                           'image/jpeg',
@@ -116,18 +110,18 @@ class ProduitType extends AbstractType
                     ])
                   ]
             ])
-            //Importation des différentes Classes/Entités lié à la table Produit [à trouver]
+            // Importation des différentes Classes/Entités lié à la table Produit [à trouver]
             ->add('genreProduit', EntityType::class, [
                 'class' => GenreProduit::class,
                 'choice_label' => 'nom_genre',
-                'multiple' => true,
+                // Nom de la valeur dans la BDD car genre est une entité de la BDD
+                'multiple' => true, // Précision de la liste d'un ou plusieurs genre(s)
                 'expanded' => true
             ])
             ->add('langueProduit', EntityType::class, [
                 'class' => LangueProduit::class,
                 'choice_label' => 'nom_langue',
-                'multiple' => true,
-
+                'multiple' => true
             ])
             ->add('regionProduit', EntityType::class, [
                 'class' => RegionProduit::class,
@@ -151,4 +145,15 @@ class ProduitType extends AbstractType
             'data_class' => Produit::class,
         ]);
     }
+    /*
+    Dans produit/index.html.twig pour afficher les autres données
+    <td class="align-middle">{{ produits.genreProduit.nomGenre }}</td> // Genre
+    <td class="align-middle">{{ produits.langueProduit.nomCategorie }}</td> // Langue
+
+    {% for langues in langue %}<!-- Pour toutes les langues présente dans la table Langue_Produit -->
+    {% if langues.fkProduit.id == produits.id %} <!-- Si la langueest = à l'ID du produit-->
+      <td class="align-middle"> {{ langues.nomLangue }} </td> <!-- Affiche le nom de la langue-->
+    {% endif %}
+    {% endfor %}
+    */
 }

@@ -8,7 +8,7 @@
 
   <div class="row">
     <div class="col-9">
-      {{ form_row(produitForm.nom_produit, {'label': 'Titre'}) }}
+      {{ form_row(produitForm.nomProduit, {'label': 'Titre'}) }}
     </div>
      <div class="col-3">
        {{ form_row(produitForm.categorieProduit, {'label': 'Catégorie du produits'}) }}
@@ -16,7 +16,7 @@
   </div>
 
   <div class="col-12">
-     {{ form_row(produitForm.description_produit, {'label': 'Description'}) }}
+     {{ form_row(produitForm.descriptionProduit, {'label': 'Description'}) }}
   </div>
 
   <div class="row">
@@ -45,16 +45,16 @@
   <div class="row">
     <h2>Détails en plus</h2>
     <div class="col-3">
-       {{ form_row(produitForm.nb_manette_produit, {'label': 'Nombre de manettes incluse'}) }}
+       {{ form_row(produitForm.nbManetteProduit, {'label': 'Nombre de manettes'}) }}
     </div>
     <div class="col-3">
-         {{ form_row(produitForm.branchement_produit, {'label': 'Branchements inclus'}) }}
+         {{ form_row(produitForm.branchementProduit, {'label': 'Branchements'}) }}
     </div>
     <div class="col-3">
-         {{ form_row(produitForm.boite_produit, {'label': 'Boîte incluse'}) }}
+         {{ form_row(produitForm.boiteProduit, {'label': 'Boîte'}) }}
     </div>
     <div class="col-3">
-         {{ form_row(produitForm.notice_produit, {'label': 'Notice incluse'}) }}
+         {{ form_row(produitForm.noticeProduit, {'label': 'Notice'}) }}
     </div>
   </div>
 

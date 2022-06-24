@@ -1,0 +1,77 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+  {{ form_start(produitForm) }}
+
+  <div class="row">
+    <div class="col-9">
+      {{ form_row(produitForm.nomProduit, {'label': 'Titre'}) }}
+    </div>
+     <div class="col-3">
+       {{ form_row(produitForm.categorieProduit, {'label': 'Catégorie du produits'}) }}
+    </div>
+  </div>
+
+  <div class="col-12">
+     {{ form_row(produitForm.descriptionProduit, {'label': 'Description'}) }}
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+        <h2>Caractéristiques importantes</h2>
+    </div>
+    <div class="col-3">
+       {{ form_row(produitForm.genreProduit, {
+          'label': 'Genre (facultatif pour les consoles)',
+          'label_attr': {
+            'class': 'py-0'}
+          }
+        ) }}
+    </div>
+    <div class="col-3">
+         {{ form_row(produitForm.langueProduit, {'label': 'Langue(s)'}) }}
+    </div>
+    <div class="col-3">
+         {{ form_row(produitForm.regionProduit, {'label': 'Region'}) }}
+    </div>
+    <div class="col-3">
+         {{ form_row(produitForm.etatProduit, {'label': 'Etat Général'}) }}
+    </div>
+  </div>
+
+  <div class="row">
+    <h2>Détails en plus</h2>
+    <div class="col-3">
+       {{ form_row(produitForm.nbManetteProduit, {'label': 'Nombre de manettes'}) }}
+    </div>
+    <div class="col-3">
+         {{ form_row(produitForm.branchementProduit, {'label': 'Branchements'}) }}
+    </div>
+    <div class="col-3">
+         {{ form_row(produitForm.boiteProduit, {'label': 'Boîte'}) }}
+    </div>
+    <div class="col-3">
+         {{ form_row(produitForm.noticeProduit, {'label': 'Notice'}) }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+         {{ form_row(produitForm.prixProduit, {'label': 'Prix (€)'}) }}
+    </div>
+    <div class="col-6">
+         {{ form_row(produitForm.imageProduit, {'label': 'Image du produit'}) }}
+    </div>
+  </div>
+
+  <div class="col-12 d-flex justify-content-end">
+    <a href="{{ path('admin_produit_index') }}" class="btn btn-danger m-3">Annuler</a>
+    <button class="btn btn-success m-3">Créer</button>
+  </div>
+
+  {{ form_end(produitForm) }}
+
+{% endblock %}
