@@ -19,7 +19,7 @@ class EtatController extends AbstractController
   public function index(EtatProduitRepository $etatRepository): Response
   {
     $etats = $etatRepository->findAll();
-    return $this->render('etat/index.html.twig', [
+    return $this->render('admin/etat/index.html.twig', [
         'etat' => $etats,
     ]);
   }
@@ -40,7 +40,7 @@ class EtatController extends AbstractController
           return $this->redirectToRoute('admin_etat_index');
       }
 
-      return $this->render('etat/etatForm.html.twig', [
+      return $this->render('admin/etat/etatForm.html.twig', [
           'etatForm' => $form->createView()
       ]);
    }
@@ -63,7 +63,7 @@ class EtatController extends AbstractController
         return $this->redirectToRoute('admin_etat_index');
       }
 
-      return $this->render('etat/etatUpdateForm.html.twig', [
+      return $this->render('admin/etat/etatUpdateForm.html.twig', [
         'etatForm' => $form->createView()
       ]);
     }

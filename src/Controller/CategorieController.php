@@ -19,7 +19,7 @@ class CategorieController extends AbstractController
   public function index(CategorieProduitRepository $categorieRepository): Response
   {
     $categories = $categorieRepository->findAll();
-    return $this->render('categorie/index.html.twig', [
+    return $this->render('admin/categorie/index.html.twig', [
         'categorie' => $categories,
     ]);
   }
@@ -40,7 +40,7 @@ class CategorieController extends AbstractController
           return $this->redirectToRoute('admin_categorie_index');
       }
 
-      return $this->render('categorie/categorieForm.html.twig', [
+      return $this->render('admin/categorie/categorieForm.html.twig', [
           'categorieForm' => $form->createView()
       ]);
   }
@@ -63,7 +63,7 @@ class CategorieController extends AbstractController
        return $this->redirectToRoute('admin_categorie_index');
      }
 
-     return $this->render('categorie/categorieUpdateForm.html.twig', [
+     return $this->render('admin/categorie/categorieUpdateForm.html.twig', [
        'categorieForm' => $form->createView()
      ]);
    }

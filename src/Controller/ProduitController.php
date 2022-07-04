@@ -21,7 +21,7 @@ class ProduitController extends AbstractController
     {
       $produits = $produitRepository->findAll();
       //dd($produits[0]->getLangueProduit()); // Test de la présence des données dans l'index
-      return $this->render('produit/index.html.twig', [ // permet de transférer des données de la BDD en Twig
+      return $this->render('admin/produit/index.html.twig', [ // permet de transférer des données de la BDD en Twig
           'produits' => $produits,
       ]);
     }
@@ -49,7 +49,7 @@ class ProduitController extends AbstractController
             return $this->redirectToRoute('admin_produit_index');
         }
 
-        return $this->render('produit/produitForm.html.twig', [
+        return $this->render('admin/produit/produitForm.html.twig', [
             'produitForm' => $form->createView()
         ]);
     }
@@ -91,7 +91,7 @@ class ProduitController extends AbstractController
         return $this->redirectToRoute('admin_produit_index');
       }
 
-      return $this->render('produit/produitForm.html.twig', [
+      return $this->render('admin/produit/produitForm.html.twig', [
         'produitForm' => $form->createView()
       ]);
     }

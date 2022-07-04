@@ -19,7 +19,7 @@ class RegionController extends AbstractController
   public function index(RegionProduitRepository $regionRepository): Response
   {
     $regions = $regionRepository->findAll();
-    return $this->render('region/index.html.twig', [
+    return $this->render('admin/region/index.html.twig', [
         'region' => $regions,
     ]);
   }
@@ -40,7 +40,7 @@ class RegionController extends AbstractController
           return $this->redirectToRoute('admin_region_index');
       }
 
-      return $this->render('region/regionForm.html.twig', [
+      return $this->render('admin/region/regionForm.html.twig', [
           'regionForm' => $form->createView()
       ]);
    }
@@ -63,7 +63,7 @@ class RegionController extends AbstractController
         return $this->redirectToRoute('admin_region_index');
       }
 
-      return $this->render('region/regionUpdateForm.html.twig', [
+      return $this->render('admin/region/regionUpdateForm.html.twig', [
         'regionForm' => $form->createView()
       ]);
     }

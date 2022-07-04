@@ -19,7 +19,7 @@ class LangueController extends AbstractController
   public function index(LangueProduitRepository $langueRepository): Response
   {
     $langues = $langueRepository->findAll();
-    return $this->render('langue/index.html.twig', [
+    return $this->render('admin/langue/index.html.twig', [
         'langue' => $langues,
     ]);
   }
@@ -40,7 +40,7 @@ class LangueController extends AbstractController
           return $this->redirectToRoute('admin_langue_index');
       }
 
-      return $this->render('langue/langueForm.html.twig', [
+      return $this->render('admin/langue/langueForm.html.twig', [
           'langueForm' => $form->createView()
       ]);
   }
@@ -63,7 +63,7 @@ class LangueController extends AbstractController
        return $this->redirectToRoute('admin_langue_index');
      }
 
-     return $this->render('langue/langueUpdateForm.html.twig', [
+     return $this->render('admin/langue/langueUpdateForm.html.twig', [
        'langueForm' => $form->createView()
      ]);
    }

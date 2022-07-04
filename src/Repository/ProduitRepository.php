@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Produit;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+//use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -48,28 +49,30 @@ class ProduitRepository extends ServiceEntityRepository
     }
     */
     /**
-    * @return Produit[] Returns an array of 1 Produit objects ordered by latest insted id
+    * @return Produit[] Retourne un tableau de 1 Produit objet ordonné par la dernière unstance d'id
     */
-    public function findById()
+    public function findById() // CatalogController.php
     {
         return $this->createQueryBuilder('fls') // fls est un alias
-        ->orderBy('fls.id', 'DESC') // DESC : tri en ordre décroissant - ASC : tri en ordre croissant 
-        ->setMaxResults(2) // sélectionne 2 résultats maximum
-        ->getQuery() // requête
-        ->getResult(); // résultats(s)
+        ->orderBy('fls.id', 'DESC') // DESC : tri en ordre décroissant - ASC : tri en ordre croissant
+        ->setMaxResults(2) // paramètre qui sélectionne 2 résultats maximum
+        ->getQuery() // envoie de la requête
+        ->getResult(); // résultat(s)
     }
     public function findByPrice()
     {
         return $this->createQueryBuilder('flsprice')
-        ->orderBy('flsprice.prix_produit', 'DESC') // ou ASC
+        ->orderBy('flsprice.prix_produit', 'DESC') // de A à Z ou DESC : de Z à A
         ->getQuery()
-        ->getResult(); 
+        ->getResult();
     }
-    public function findByEtat()
-    {
-        return $this->createQueryBuilder('flsprice')
-        ->orderBy('flsprice.langue_produit') 
-        ->getQuery()
-        ->getResult(); 
-    }
+    // public function findByGenre() // (ou langue) Dilème des relations ManyToMany
+    // {
+    //     return $this->createQueryBuilder('fls') // Tentative avec un inner join, mais impossible
+    //     ->select('langue_produit') // le problème : aucune donnée direct est écrite sur la table produit
+    //     ->from('App:Produit', 'lp') // donc rien ne marche après
+    //     ->orderBy('fls.lp', 'DESC') // au delà de ce que j'ai vu pour le moment ou gérer autrement
+    //     ->getQuery()
+    //     ->getResult();
+    // }
 }

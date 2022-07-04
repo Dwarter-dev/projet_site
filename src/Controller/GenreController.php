@@ -19,7 +19,7 @@ class GenreController extends AbstractController
   public function index(GenreProduitRepository $genreRepository): Response
   {
     $genres = $genreRepository->findAll();
-    return $this->render('genre/index.html.twig', [
+    return $this->render('admin/genre/index.html.twig', [
         'genre' => $genres,
     ]);
   }
@@ -40,7 +40,7 @@ class GenreController extends AbstractController
           return $this->redirectToRoute('admin_genre_index');
       }
 
-      return $this->render('genre/genreForm.html.twig', [
+      return $this->render('admin/genre/genreForm.html.twig', [
           'genreForm' => $form->createView()
       ]);
   }
@@ -63,7 +63,7 @@ class GenreController extends AbstractController
        return $this->redirectToRoute('admin_genre_index');
      }
 
-     return $this->render('genre/genreUpdateForm.html.twig', [
+     return $this->render('admin/genre/genreUpdateForm.html.twig', [
        'genreForm' => $form->createView()
      ]);
    }

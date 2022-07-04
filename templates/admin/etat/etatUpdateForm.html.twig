@@ -1,22 +1,22 @@
-{% extends 'baseAdmin.html.twig' %}
+{% extends 'admin/baseAdmin.html.twig' %}
 
 {% block title %}{% endblock %}
 
 {% block body %}
 
-  {{ form_start(genreForm) }}
+  {{ form_start(etatForm) }}
 
   <div class="row justify-content-center">
     <div class="col-6">
-      {{ form_row(genreForm.nomGenre, {'label': 'Nom du genre'}) }}
+      {{ form_row(etatForm.nomEtat, {'label': 'Etat du jeu'}) }}
     </div>
   </div>
 
   <div class="col-12 d-flex justify-content-center">
-    <a href="{{ path('admin_genre_index') }}" class="btn btn-danger m-3">Annuler</a>
+    <a href="{{ path('admin_etat_index') }}" class="btn btn-danger m-3">Annuler</a>
     <button class="btn btn-success m-3">Modifier</button>
   </div>
 
-  {{ form_end(genreForm) }}
+  {{ form_end(etatForm) }}
 
 {% endblock %}
