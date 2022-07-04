@@ -50,14 +50,26 @@ class ProduitRepository extends ServiceEntityRepository
     /**
     * @return Produit[] Returns an array of 1 Produit objects ordered by latest insted id
     */
-  // public function findLastThree()
-  // {
-  //   return $this->createQueryBuilder('fls') // fls est un alias
-  //   // ->andWhere('fls.surface->:val') // on cherche un id supérieur à une certaine valeur
-  //   // ->setParameter('val',0) // on défini la valeur
-  //   ->orderBy('fls.id', 'DESC') // tri en ordre décroissant
-  //   ->setMaxResults(1) // sélectionne 6 résultats maximum
-  //   ->getQuery() // requête
-  //   ->getResult(); // résultats(s)
-  // }
+    public function findById()
+    {
+        return $this->createQueryBuilder('fls') // fls est un alias
+        ->orderBy('fls.id', 'DESC') // DESC : tri en ordre décroissant - ASC : tri en ordre croissant 
+        ->setMaxResults(2) // sélectionne 2 résultats maximum
+        ->getQuery() // requête
+        ->getResult(); // résultats(s)
+    }
+    public function findByPrice()
+    {
+        return $this->createQueryBuilder('flsprice')
+        ->orderBy('flsprice.prix_produit', 'DESC') // ou ASC
+        ->getQuery()
+        ->getResult(); 
+    }
+    public function findByEtat()
+    {
+        return $this->createQueryBuilder('flsprice')
+        ->orderBy('flsprice.langue_produit') 
+        ->getQuery()
+        ->getResult(); 
+    }
 }

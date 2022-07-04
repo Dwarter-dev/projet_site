@@ -14,16 +14,33 @@
         </div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Connecter-vous</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Mot de Passe</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-
+    <div class="container py-5" id="login">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" class="col-md-6">
+                <div id="login-box" class="col-md-12">
+                    <form id="login-form" class="form" method="post">
+                        <h1 class="text-center py-2">Connecter-Vous</h1>
+                        <div class="form-group">
+                          <label for="inputEmail">Email</label>
+                          <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                        </div>
+                        <div class="form-group">
+                          <label for="inputPassword text-center">Mot de Passe</label>
+                          <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                          <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        </div>
+                        <div class="form-group text-center py-4">
+                            <label for="remember-me" class=""><span>Se souvenir de moi</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
+                            <input type="submit" class="btn btn-info btn-md" value="Connexion">
+                        </div>
+                        <div id="register-link" class="text-center">
+                            <a href="{{ path('app_register') }}" class="">Pas encore inscrit ? Cliquez sur ce lien</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     {#
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
         See https://symfony.com/doc/current/security/remember_me.html
@@ -35,8 +52,6 @@
         </div>
     #}
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Connexion
-    </button>
+
 </form>
 {% endblock %}
