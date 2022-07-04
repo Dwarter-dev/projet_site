@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste de tout les produits en magasin{% endblock %}
+
+{% block body %}
+
+<table class="table text-center table-hover table-sm" id="table">
+    <thead>
+        <tr>
+            <th>N°</th>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Manette(s)</th>
+            <th>Branchements</th>
+            <th>Boite</th>
+            <th>Notice</th>
+            <th>Prix</th>
+            <th>Région</th>
+            <th>État</th>
+            <th>Catégorie</th>
+            <th>Genre</th>
+            <th>Langue</th>
+        </tr>
+    </thead>
+    <tbody>
+      {% for produit in produits %}
+            <tr>
+                <!-- Partie Produit -->
+                <td class="align-middle">{{ loop.index }}</td> <!--  -->
+                <td class="align-middle">{{ produit.nomProduit }}</td><!-- Nom  -->
+                <td class="align-middle">{{ produit.descriptionProduit }}</td><!-- Description -->
+                <td class="align-middle" id="produit-image"><img src="{{ asset('img/produits/' ~ produit.imageProduit) }}" class="card-img-top" alt="Photo principale {{produit.nomProduit}}"></td>
+                <td class="align-middle">{{ produit.nbManetteProduit }}</td><!-- Nb. Manettes -->
+
+                {% if produit.branchementProduit == false %}
+                <td class="align-middle"> Non </td>
+                {% else %}
+                <td class="align-middle"> Inclue </td><!-- Branchements -->
+                {% endif %}
+
+                {% if produit.boiteProduit == false %}
+                <td class="align-middle"> Non </td>
+                {% else %}
+                <td class="align-middle"> Incluse </td><!-- Branchements -->
+                {% endif %}
+
+                {% if produit.noticeProduit == false %}
+                <td class="align-middle"> Non </td>
+                {% else %}
+                <td class="align-middle"> Incluse </td><!-- Branchements -->
+                {% endif %}
+
+                <td class="align-middle">{{ produit.prixProduit }}</td><!-- Prix -->
+
+                <td class="align-middle">{{ produit.regionProduit.nomRegion }}</td> <!-- Région -->
+
+                <td class="align-middle">{{ produit.etatProduit.nomEtat }}</td> <!-- État -->
+
+                <td class="align-middle">{{ produit.categorieProduit.nomCategorie }}</td> <!-- Catégorie -->
+
+                <td class="align-middle">
+                {% for genre in produit.genreProduit %}
+                    <p>{{ genre.nomGenre }}</p>
+                {% endfor %}
+                </td>
+
+                <td class="align-middle">
+                {% for langue in produit.langueProduit %} <!-- Pour chaque langue présente dans la liste LangueProduit -->
+                    <p>{{ langue.nomLangue }}</p> <!-- Récupérer le nom de la langue-->
+                    <!-- Note, la liaison entre les relations est bien automatique faite avec Doctrine\..\..\ArrayCollection -->
+                {% endfor %}
+                </td>
+            </tr>
+      {% endfor %}
+
+    </tbody>
+</table>
+
+{% endblock %}
